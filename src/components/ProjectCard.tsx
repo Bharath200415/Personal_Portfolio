@@ -5,7 +5,7 @@ import { FaGithub} from "react-icons/fa6";
 import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
-import Video from "next-video";
+
 import { ProjectNavigation } from './ProjectNavigation';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import donezovideo from '/videos/donezo.mp4';
