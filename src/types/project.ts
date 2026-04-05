@@ -10,4 +10,9 @@ export interface Project {
   tags: string[];
   date?: string;
   tweetUrl?: string;
+    links?: Array<{
+    icon: React.ReactNode;
+      type: string;
+    href: string;
+    }>;
 }

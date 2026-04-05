@@ -29,7 +29,7 @@ export default function ProfileHeader({
     twitter: "https://x.com/zusty_dev",
     github: "https://github.com/bharath200415",
     linkedin: "https://www.linkedin.com/in/bharathcodes/",
-    resume: "https://drive.google.com/file/d/1U8450r8Qsf9Xo1IcQhMdSrdzFY2__JXP/view?usp=sharing",
+    resume: "https://drive.google.com/file/d/1iSZSnJGSgr--A4KbHTNRYYU7hat1pjDJ/view?usp=sharing",
   }
 }: ProfileHeaderProps) {
   const { theme, setTheme } = useTheme();

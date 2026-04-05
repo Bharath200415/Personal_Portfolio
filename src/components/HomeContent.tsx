@@ -207,12 +207,15 @@ export default function NewHeroSection() {
                     </div>
                   </div>
                   <div className="px-4 flex justify-center mt-6 sm:mt-8 mb-4 sm:mb-6">
-                    <Link href="/blogs">
+                    {/* <Link href="/blogs">
                       <NeumorphButton className="inline-flex items-center gap-1 px-4 py-2 text-xs sm:text-sm text-neutral-800 dark:text-white/80 hover:text-neutral-900 dark:hover:text-white">
                         <span>View All</span>
                         <span>→</span>
+                        <span>It's either 0 or 1.</span>
                       </NeumorphButton>
-                    </Link>
+                    </Link> */}
+                    <span className='opacity-60 italic text-base sm:text-xl font-[family-name:var(--font-instrument-serif)]'>"stay hungry, stay foolish!"
+                    </span>
                   </div>
                 </div>
               </Reveal>

@@ -89,6 +89,9 @@ export const ProjectCard = ({ project, isDetailed = false, allProjects = [] }: P
           <span className="inline-block transition-all duration-300 group-hover:translate-x-1 group-hover:text-neutral-700 dark:group-hover:text-neutral-300">
             {project.title}
           </span>
+          <div>
+            Hello
+          </div>
         </div>
       </Link>
     );

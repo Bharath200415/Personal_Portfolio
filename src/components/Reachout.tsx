@@ -26,7 +26,7 @@ export default function Reachout({
     github: "https://github.com/bharath200415",
     linkedin: "https://www.linkedin.com/in/bharathcodes/",
     // resume: "https://drive.google.com/file/d/1U8450r8Qsf9Xo1IcQhMdSrdzFY2__JXP/view?usp=sharing",
-    resume: "https://drive.google.com/file/d/1s9z-zvPMhe0hjfaXialseXIGH5-m8_7u/view?usp=sharing",
+    resume: "https://drive.google.com/file/d/1iSZSnJGSgr--A4KbHTNRYYU7hat1pjDJ/view?usp=sharing",
     mail: "mailto:bharath200415@gmail.com"
   }
 }: ReachoutProps) {
@@ -34,7 +34,7 @@ export default function Reachout({
     <div className="sm:px-12 px-4 pb-24 sm:pb-28">
       <div className="text-center sm:text-left w-full">
         <div className="mb-4 sm:mb-6">
-          <h2 className="font-[family-name:var(--font-instrument-serif)] text-lg sm:text-xl font-medium mb-2 opacity-50 mt-4 sm:mt-6">
+          <h2 className="font-[family-name:var(--font-instrument-serif)] text-lg sm:text-xl font-medium mb-2 opacity-70 mt-4 sm:mt-6">
             {title}
           </h2>
           <p className="opacity-20 text-md sm:text-lg mb-3 sm:mb-4">
