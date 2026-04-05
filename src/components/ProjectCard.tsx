@@ -8,22 +8,7 @@ import Image from "next/image";
 
 import { ProjectNavigation } from './ProjectNavigation';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-import donezovideo from '/videos/donezo.mp4';
-import mindMentorVideo from '/videos/mind-mentor.mp4';
-import satyaCheckVideo from '/videos/satya-check.mp4';
-import fleethq from '/videos/fleethq.mp4';
-import rebatr from '/videos/rebatr-short.mp4';
-import lazycommitVideo from '/videos/lazycommit-video.mp4';
-import gocache from '/videos/gocache.mp4';
-import quotick from '/videos/quotick.mp4';
-import doable from '/videos/doable.mp4';
-import screenshot from '/videos/screenshot-studio.mp4';
-import readmelingo from '/videos/readmelingo.mp4';
-import foliox from '/videos/foliox.mp4';
-import mercurius from '/videos/mercurius.mp4';
-import oneurl from '/videos/oneurl.mp4';
-import bettershot from '/videos/bettershot.mp4';
-import linkpreview from '/videos/linkpreview.mp4';
+
 
 interface ProjectCardProps {
   project: Project;
@@ -32,45 +17,27 @@ interface ProjectCardProps {
 }
 
 // Map video IDs to imported video assets
-const getVideoSource = (videoId: string) => {
-  switch (videoId) {
-    case 'donezo':
-      return donezovideo;
-    case 'mind-mentor':
-      return mindMentorVideo;
-    case 'satya-check':
-      return satyaCheckVideo;
-    case 'fleethq':
-      return fleethq; 
-    case 'rebatr-short':
-      return rebatr;
-    case 'lazycommit-video':
-      return lazycommitVideo;
-    case 'gocache':
-      return gocache;
-    case 'quotick':
-      return quotick
-    case 'doable':
-      return doable
-    case 'screenshot':
-      return screenshot
-    case 'readmelingo':
-      return readmelingo
-    case 'foliox':
-      return foliox
-    case 'mercurius':
-      return mercurius
-    case 'oneurl':
-      return oneurl
-    case 'bettershot':
-      return bettershot
-    case 'linkpreview':
-      return linkpreview
-    default:
-      return null;
-  }
+const getVideoSource = (videoId: string): string | null => {
+  const videoMap: Record<string, string> = {
+    'donezo': '/videos/donezo.mp4',
+    'mind-mentor': '/videos/mind-mentor.mp4',
+    'satya-check': '/videos/satya-check.mp4',
+    'fleethq': '/videos/fleethq.mp4',
+    'rebatr-short': '/videos/rebatr-short.mp4',
+    'lazycommit-video': '/videos/lazycommit-video.mp4',
+    'gocache': '/videos/gocache.mp4',
+    'quotick': '/videos/quotick.mp4',
+    'doable': '/videos/doable.mp4',
+    'screenshot': '/videos/screenshot-studio.mp4',
+    'readmelingo': '/videos/readmelingo.mp4',
+    'foliox': '/videos/foliox.mp4',
+    'mercurius': '/videos/mercurius.mp4',
+    'oneurl': '/videos/oneurl.mp4',
+    'bettershot': '/videos/bettershot.mp4',
+    'linkpreview': '/videos/linkpreview.mp4',
+  };
+  return videoMap[videoId] ?? null;
 };
-
 export const ProjectCard = ({ project, isDetailed = false, allProjects = [] }: ProjectCardProps) => {
 
   if (!isDetailed) {
@@ -162,7 +129,7 @@ export const ProjectCard = ({ project, isDetailed = false, allProjects = [] }: P
       <div className="mb-6 sm:mb-8">
         {project.video && getVideoSource(project.video) ? (
           <div className="w-full aspect-video rounded-lg overflow-hidden">
-            <Video
+            <video
               src={getVideoSource(project.video)!}
               poster={project.image}
               className="w-full h-full object-cover"
