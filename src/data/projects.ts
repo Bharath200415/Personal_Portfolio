@@ -71,7 +71,7 @@ export const projects: Project[] = [
     liveLink: "https://graminsevavitb.vercel.app",
     githubLink: "https://github.com/bharath200415/graminseva",
     video: 'lazycommit-video',
-    image: '/images/lazycommit.png',
+    image: '/graminseva.webp',
     tweetUrl: "https://x.com/code_kartik/status/1968387201760444798",
     tags: [
       "JavaScript",
@@ -82,6 +82,25 @@ export const projects: Project[] = [
       "TailwindCSS",
       "JWT"
 
+    ],
+  },
+  {
+    id: "landingpage",
+    title: "Motion Landing Page",
+    description: "Clean yet elegant SaaS Agency landing page with microinteractions powered by motion/react.",
+    longDescription:
+      "Clean yet elegant SaaS Agency landing page with microinteractions powered by motion/react.",
+    liveLink: "https://agenforce-marketing-template.vercel.app/",
+    githubLink: "https://github.com/Bharath200415/AgenForce_LandingPage",
+    video: "oneurl",
+    image: "/agenforce.webp",
+    tweetUrl: "https://x.com/code_kartik/status/2006784332246167877",
+    tags: [
+      "React.js",
+      "JavaScript",
+      "Shadcn UI",
+      "Tailwind CSS",
+      "LocalStorage",
     ],
   },
   {
