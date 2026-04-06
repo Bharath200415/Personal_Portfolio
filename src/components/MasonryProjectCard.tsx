@@ -37,7 +37,11 @@ interface MasonryProjectCardProps {
 
 export const MasonryProjectCard = ({ project, className = "" }: MasonryProjectCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const videoSource = project.video ? getVideoSource(project.video) : null;
+  const videoSource = project.video
+    ? project.video.startsWith("http")
+      ? project.video
+      : getVideoSource(project.video)
+    : null;
 
 return (
   <div

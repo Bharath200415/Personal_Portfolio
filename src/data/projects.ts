@@ -9,8 +9,8 @@ export const projects: Project[] = [
       "BetterShot is an open-source alternative to CleanShot X for macOS. Capture, edit, and enhance your screenshots with professional quality.",
     liveLink: "https://github.com/bharath200415/snapqr",
     githubLink: "https://github.com/bharath200415/snapqr",
-    video: "bettershot",
-    image: "/images/bettershot.png",
+    video: "https://pub-52330599f4c24002984ec170d5e0354d.r2.dev/cursorful-video-1768649132147%20(1).mp4",
+    image: "/snapqr.webp",
     tweetUrl: "https://x.com/code_kartik/status/2010651653125607464",
     tags: [
       "HTML",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     liveLink: "https://zennotes.bharath.codes",
     githubLink: "https://github.com/bharath200415/zennotes",
     video: "oneurl",
-    image: "/images/oneurl.png",
+    image: "/zennotes.webp",
     tweetUrl: "https://x.com/code_kartik/status/2006784332246167877",
     tags: [
       "React.js",
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     liveLink: "https://vaultx.bharath.codes",
     githubLink: "https://github.com/bharath200415/vaultx",
     video: 'mind-mentor',
-    image: '/images/mindmentorai.png',
+    image: '/vaultx.webp',
     tweetUrl: "https://x.com/code_kartik/status/1887125453359788069",
     tags: [
       "React.js",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     liveLink: "https://typescout.bharath.codes",
     githubLink: "https://github.com/bharath200415/typescout",
     video: "linkpreview",
-    image: "/images/linkpreview.png",
+    image: "/typescout.webp",
     tweetUrl: "https://x.com/code_kartik/status/2014328471141663162",
     tags: [
       "Next.js",
