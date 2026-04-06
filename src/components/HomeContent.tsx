@@ -47,12 +47,12 @@ export default function NewHeroSection() {
               name="Bharath"
               age="21"
               title="engineer • developer • designer "
-              profileImage="/pfp_github.png"
+              profileImage="/pfp_colored.png"
               socialLinks={{
                 twitter: "https://x.com/zustydev",
                 github: "https://github.com/bharath200415",
                 linkedin: "https://www.linkedin.com/in/bharathcodes/",
-                resume: "https://drive.google.com/file/d/1s9z-zvPMhe0hjfaXialseXIGH5-m8_7u/view?usp=sharing",
+                resume: "https://drive.google.com/file/d/1iSZSnJGSgr--A4KbHTNRYYU7hat1pjDJ/view?usp=sharing",
               }}
             />
           </Reveal>
