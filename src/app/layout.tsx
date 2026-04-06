@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   description: 'I build products that solve real problems. Available for new opportunities.',
   openGraph: {
     url: 'https://bharath.codes/',
-    siteName: 'Kartik Labhshetwar Portfolio',
+    siteName: 'Bharath Portfolio',
     locale: 'en_US',
     type: 'website',
     images: [{
