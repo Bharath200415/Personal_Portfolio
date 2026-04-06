@@ -162,6 +162,7 @@ export const Tooltip = ({
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (window.matchMedia("(hover: none)").matches) return;
     const touch = e.touches[0];
     const rect = e.currentTarget.getBoundingClientRect();
     const mouseX = touch.clientX - rect.left;
@@ -171,6 +172,7 @@ export const Tooltip = ({
   };
 
   const handleTouchEnd = () => {
+    if (window.matchMedia("(hover: none)").matches) return;
     // Delay hiding to allow for tap interaction
     setTimeout(() => {
       setIsVisible(false);
@@ -180,20 +182,9 @@ export const Tooltip = ({
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Toggle visibility on click for mobile devices
+    // Disable tooltip on touch devices so wrapped links/buttons remain tappable.
     if (window.matchMedia("(hover: none)").matches) {
-      e.preventDefault();
-      if (isVisible) {
-        setIsVisible(false);
-        setMouse({ x: 0, y: 0 });
-        setPosition({ x: 0, y: 0 });
-      } else {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        updateMousePosition(mouseX, mouseY);
-        setIsVisible(true);
-      }
+      return;
     }
   };
 

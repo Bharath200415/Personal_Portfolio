@@ -44,99 +44,100 @@ export default function Reachout({
         
         <div className="flex flex-wrap justify-center sm:justify-start gap-3 sm:gap-4">
           {socialLinks.github && (
-            <Tooltip
-              content={
-                <div className="w-[300px] sm:w-[340px]">
-                  <div className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900">
-                    <div className="flex items-center gap-3">
-                      <Image
-                        src="/pfp_github.png"
-                        alt=" Bharath"
-                        width={56}
-                        height={56}
-                        className="h-14 w-14 rounded-full object-cover"
-                      />
-                      <div>
-                        <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-50">
-                          Bharath
-                        </p>
-                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                          @Bharath200415 · he/him
-                        </p>
-                      </div>
-                    </div>
-                    <p className="mt-3 text-xs text-neutral-700 dark:text-neutral-300">
-                      building cool stuff on a regular basis : )
-                    </p>
-                    <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-400">
-                      <span className="font-medium text-neutral-900 dark:text-neutral-50">
-                        10
-                      </span>{" "}
-                      followers ·{" "}
-                      <span className="font-medium text-neutral-900 dark:text-neutral-50">
-                        30
-                      </span>{" "}
-                      following
-                    </p>
-                  </div>
-                </div>
-              }
+            <a
+              className="touch-manipulation active:opacity-75"
+              href={socialLinks.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                WebkitTapHighlightColor: "transparent",
+                WebkitTouchCallout: "none",
+                WebkitUserSelect: "none",
+                userSelect: "none",
+              }}
             >
-              <a
-                className="touch-manipulation active:opacity-75"
-                href={socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  WebkitTapHighlightColor: "transparent",
-                  WebkitTouchCallout: "none",
-                  WebkitUserSelect: "none",
-                  userSelect: "none",
-                }}
+              <Tooltip
+                content={
+                  <div className="w-[300px] sm:w-[340px]">
+                    <div className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900">
+                      <div className="flex items-center gap-3">
+                        <Image
+                          src="/pfp_github.png"
+                          alt=" Bharath"
+                          width={56}
+                          height={56}
+                          className="h-14 w-14 rounded-full object-cover"
+                        />
+                        <div>
+                          <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-50">
+                            Bharath
+                          </p>
+                          <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                            @Bharath200415 · he/him
+                          </p>
+                        </div>
+                      </div>
+                      <p className="mt-3 text-xs text-neutral-700 dark:text-neutral-300">
+                        building cool stuff on a regular basis : )
+                      </p>
+                      <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-400">
+                        <span className="font-medium text-neutral-900 dark:text-neutral-50">
+                          10
+                        </span>{" "}
+                        followers ·{" "}
+                        <span className="font-medium text-neutral-900 dark:text-neutral-50">
+                          30
+                        </span>{" "}
+                        following
+                      </p>
+                    </div>
+                  </div>
+                }
               >
-                <NeumorphButton className="flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-3 sm:py-2">
-                  <FaGithub className="text-[20px] sm:text-[18px] text-neutral-800 dark:text-white/80 shrink-0" />
-                  <span className="hidden sm:inline text-sm font-medium text-neutral-800 dark:text-white/80">
-                    GitHub
-                  </span>
-                </NeumorphButton>
-              </a>
-            </Tooltip>
+                  <NeumorphButton className="flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-3 sm:py-2">
+                    <FaGithub className="text-[20px] sm:text-[18px] text-neutral-800 dark:text-white/80 shrink-0" />
+                    <span className="hidden sm:inline text-sm font-medium text-neutral-800 dark:text-white/80">
+                      GitHub
+                    </span>
+                  </NeumorphButton>
+                
+              </Tooltip>
+            </a>
           )}
           
           {socialLinks.twitter && (
-            <Tooltip
-              content={
-                <Image
-                  width={1206}
-                  height={1220}
-                  src="/twitter_2.png"
-                  alt="Twitter"
-                  className="rounded-sm max-w-full h-auto"
-                  unoptimized
-                />
-              }
+            <a
+              className="touch-manipulation active:opacity-75"
+              href={socialLinks.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                WebkitTapHighlightColor: "transparent",
+                WebkitTouchCallout: "none",
+                WebkitUserSelect: "none",
+                userSelect: "none",
+              }}
             >
-              <a
-                className="touch-manipulation active:opacity-75"
-                href={socialLinks.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  WebkitTapHighlightColor: "transparent",
-                  WebkitTouchCallout: "none",
-                  WebkitUserSelect: "none",
-                  userSelect: "none",
-                }}
+              <Tooltip
+                content={
+                  <Image
+                    width={1206}
+                    height={1220}
+                    src="/twitter_2.png"
+                    alt="Twitter"
+                    className="rounded-sm max-w-full h-auto"
+                    unoptimized
+                  />
+                }
               >
-                <NeumorphButton className="flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-3 sm:py-2">
-                  <FaXTwitter className="text-[20px] sm:text-[18px] text-neutral-800 dark:text-white/80 shrink-0" />
-                  <span className="hidden sm:inline text-sm font-medium text-neutral-800 dark:text-white/80">
-                    Twitter
-                  </span>
-                </NeumorphButton>
-              </a>
-            </Tooltip>
+                  <NeumorphButton className="flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-3 sm:py-2">
+                    <FaXTwitter className="text-[20px] sm:text-[18px] text-neutral-800 dark:text-white/80 shrink-0" />
+                    <span className="hidden sm:inline text-sm font-medium text-neutral-800 dark:text-white/80">
+                      Twitter
+                    </span>
+                  </NeumorphButton>
+              </Tooltip>
+            </a>
           )}
           
           {socialLinks.linkedin && (
