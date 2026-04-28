@@ -46,7 +46,7 @@ export default function NewHeroSection() {
             <ProfileHeader 
               name="Bharath"
               age="21"
-              title="engineer • developer • designer "
+              title="developer • designer "
               profileImage="/pfp_colored.png"
               socialLinks={{
                 twitter: "https://x.com/zustydev",
