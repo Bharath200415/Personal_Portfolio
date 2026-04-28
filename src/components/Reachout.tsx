@@ -26,7 +26,7 @@ export default function Reachout({
     github: "https://github.com/bharath200415",
     linkedin: "https://www.linkedin.com/in/bharathcodes/",
     // resume: "https://drive.google.com/file/d/1U8450r8Qsf9Xo1IcQhMdSrdzFY2__JXP/view?usp=sharing",
-    resume: "https://drive.google.com/file/d/1iSZSnJGSgr--A4KbHTNRYYU7hat1pjDJ/view?usp=sharing",
+    resume: "https://drive.google.com/file/d/1Et6RQ9j6o0GRNiFU1-RGYnByy01UC8a6/view?usp=drive_link",
     mail: "mailto:bharath200415@gmail.com"
   }
 }: ReachoutProps) {

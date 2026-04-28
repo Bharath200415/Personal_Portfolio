@@ -52,7 +52,7 @@ export default function NewHeroSection() {
                 twitter: "https://x.com/zustydev",
                 github: "https://github.com/bharath200415",
                 linkedin: "https://www.linkedin.com/in/bharathcodes/",
-                resume: "https://drive.google.com/file/d/1iSZSnJGSgr--A4KbHTNRYYU7hat1pjDJ/view?usp=sharing",
+                resume: "https://drive.google.com/file/d/1Et6RQ9j6o0GRNiFU1-RGYnByy01UC8a6/view?usp=drive_link",
               }}
             />
           </Reveal>
