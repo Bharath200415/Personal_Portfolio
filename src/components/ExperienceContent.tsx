@@ -21,10 +21,25 @@ export default function ExperienceContent() {
 
   const experiences: ExperienceItem[] = [
     {
+      company: "Kylix Studio",
+      position: "Founder & Lead Developer",
+      duration: "June 2025 – Present",
+      description: "Founded and lead Kylix Studio, a design-driven web development agency focused on building modern digital experiences for startups, businesses, and creators. Oversee the complete project lifecycle, from branding and UI/UX design to full-stack development, deployment, and client communication.",
+      achievements: [
+      "Designed and developed responsive, high-performance websites and web applications using Next.js, React, TypeScript, Tailwind CSS, and modern backend technologies.",
+      "Managed 20+ end-to-end client projects, including requirement gathering, wireframing, UI/UX design, development, deployment, and ongoing maintenance.",
+      "Built scalable solutions featuring authentication, database integration, contact automation, payment workflows, and third-party API integrations.",
+      "Created custom brand identities, landing pages, and digital experiences that improved online presence and user engagement for clients.",
+      "Implemented SEO best practices, performance optimizations, and accessibility standards to ensure production-ready web experiences.",
+      ],
+      href: "https://kylixstudio.vercel.app/",
+      logoUrl: "/Logo_Kylix (2).png",
+    },
+    {
       company: "Zeepty",
       position: "UI/UX Design Intern",
       duration: "April 2025 – August 2025",
-      description: "Developed and deployed cutting-edge solutions, including multi-select preferences, browser-based video recording, and API integrations like WhatsApp/email reminders. Optimized workflows with autosave features and real-time scraping, leveraging Next.js, Supabase, and Cloudflare workers.",
+      description: "Designed and developed frontend interfaces, optimized onboarding flows while enhancing the overall User-Experience.",
       achievements: [
         "Designed and delivered engaging visual content across digital platforms, including social media creatives and marketing assets, enhancing brand consistency and user engagement.",
         "Built pixel-perfect, responsive user interfaces with a strong focus on usability, accessibility, and cross-device compatibility.",
@@ -35,6 +50,7 @@ export default function ExperienceContent() {
       href: "https://zeepty.com/",
       logoUrl: "/zeepty.png",
     },
+
   ]
 
   const toggleExpanded = (company: string) => {

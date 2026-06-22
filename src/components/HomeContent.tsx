@@ -36,7 +36,7 @@ export default function NewHeroSection() {
           {/* Banner Section */}
           <Reveal delay={0.1}>
             <BannerSection 
-              bannerImage="/banner.jpg"
+              bannerImage="/pixel-mountain-lake.png"
               quote="You make your own luck if you stay at it long enough!"
             />
           </Reveal>
@@ -46,13 +46,13 @@ export default function NewHeroSection() {
             <ProfileHeader 
               name="Bharath"
               age="21"
-              title="developer • designer "
+              title="fullstack developer • designer "
               profileImage="/pfp_colored.png"
               socialLinks={{
                 twitter: "https://x.com/zustydev",
                 github: "https://github.com/bharath200415",
                 linkedin: "https://www.linkedin.com/in/bharathcodes/",
-                resume: "https://drive.google.com/file/d/1Et6RQ9j6o0GRNiFU1-RGYnByy01UC8a6/view?usp=drive_link",
+                resume: "https://drive.google.com/file/d/1zqQYwQj1Q6D-HuQ94sw1UpVWXuoT-aPD/view?usp=sharing",
               }}
             />
           </Reveal>
