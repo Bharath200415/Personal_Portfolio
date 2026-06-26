@@ -22,6 +22,7 @@ import { sponsors } from '@/data/sponsors'
 import SponsorShowcase from './SponsorShowcase'
 import SponsorButton from './SponsorButton'
 import NeumorphButton from './NeumorphButton'
+import SpotifyPlayer from './SpotifyPlayer'
 
 export default function NewHeroSection() {
   return (
@@ -47,9 +48,9 @@ export default function NewHeroSection() {
               name="Bharath"
               age="21"
               title="fullstack developer • designer "
-              profileImage="/pfp_colored.png"
+              profileImage="/pfp.jpg"
               socialLinks={{
-                twitter: "https://x.com/zustydev",
+                twitter: "https://x.com/bharathships",
                 github: "https://github.com/bharath200415",
                 linkedin: "https://www.linkedin.com/in/bharathcodes/",
                 resume: "https://drive.google.com/file/d/1zqQYwQj1Q6D-HuQ94sw1UpVWXuoT-aPD/view?usp=sharing",
@@ -81,6 +82,10 @@ export default function NewHeroSection() {
                   <ContentParagraph className="mb-2 text-base sm:text-lg">
                     <span className="font-medium dark:text-white text-black">I build from zero.</span> Whether it&apos;s frontend, backend, full-stack applications, or AI-powered experiences, I work across the entire development lifecycle. From UI/UX to deployment to user feedback, I care less about technology debates and more about delivering results that people love using.
                   </ContentParagraph>
+
+                  <div className="mt-4 -mb-3 sm:mt-6 px-2 sm:px-0">
+                    <SpotifyPlayer />
+                  </div>
                 </ContentSection>
               </Reveal>
 

@@ -22,7 +22,7 @@ export default function Reachout({
   title = "Let's connect",
   subtitle = "Find me on these platforms",
   socialLinks = {
-    twitter: "https://x.com/zustydev",
+    twitter: "https://x.com/bharathships",
     github: "https://github.com/bharath200415",
     linkedin: "https://www.linkedin.com/in/bharathcodes/",
     // resume: "https://drive.google.com/file/d/1U8450r8Qsf9Xo1IcQhMdSrdzFY2__JXP/view?usp=sharing",

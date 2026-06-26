@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://bharath.codes'),
   title: 'Bharath',
   description: 'I build products that solve real problems. Available for new opportunities.',
+  icons: {
+    icon: '/pfp.jpg',
+  },
   openGraph: {
     url: 'https://bharath.codes/',
     siteName: 'Bharath Portfolio',
@@ -47,6 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/pfp.jpg" />
         <meta name="google-site-verification" content="tMCNs2fgM6voEHBd3JsySffMFSiUCQDEFEF1iYI3-ZQ" />
       </head>
       <body className={`${hkGrotesk.className} ${instrumentSerif.variable}`} suppressHydrationWarning={true}>
