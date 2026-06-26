@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { Play, Pause } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 
 interface SpotifyPlayerProps {
     trackUrl?: string
@@ -208,7 +208,7 @@ export default function SpotifyPlayer({
                                         damping: 20,
                                     },
                                     opacity: {
-                                        duration: 0.25,
+                                        duration: 0.22,
                                         ease: 'easeOut',
                                     },
                                 },
