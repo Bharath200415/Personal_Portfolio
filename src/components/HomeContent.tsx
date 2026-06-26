@@ -83,7 +83,7 @@ export default function NewHeroSection() {
                     <span className="font-medium dark:text-white text-black">I build from zero.</span> Whether it&apos;s frontend, backend, full-stack applications, or AI-powered experiences, I work across the entire development lifecycle. From UI/UX to deployment to user feedback, I care less about technology debates and more about delivering results that people love using.
                   </ContentParagraph>
 
-                  <div className="mt-4 -mb-3 sm:mt-6 px-2 sm:px-0">
+                  <div className="mt-4 -mb-3 sm:mt-6 sm:px-0">
                     <SpotifyPlayer />
                   </div>
                 </ContentSection>

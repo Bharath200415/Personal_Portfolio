@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { Play, Pause } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface SpotifyPlayerProps {
     trackUrl?: string
@@ -122,11 +123,11 @@ export default function SpotifyPlayer({
 
             {/* Main Card */}
             
-            <div className="bg-neutral-50/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-2xl border border-neutral-200/60 dark:border-neutral-800 p-4 transition-all duration-300 hover:shadow-sm">
+            <div className="bg-neutral-50/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-2xl border border-neutral-200/60 dark:border-neutral-800 p-4 transition-[background-color,border-color,box-shadow] duration-300 hover:shadow-sm">
                 {/* Top Row - Album art, info, and play button */}
                 <div className="flex items-center gap-3.5">
                     {/* Album Art */}
-                    <div className="shrink-0 w-12 h-12 sm:w-14 sm:h-15 rounded-lg overflow-hidden shadow-sm relative group">
+                    <div className="shrink-0 w-13 h-13 sm:w-15 sm:h-15 rounded-lg overflow-hidden shadow-sm relative group">
                         <Image
                             src={albumArt}
                             alt={songName}
@@ -193,45 +194,82 @@ export default function SpotifyPlayer({
                 </div>
 
                 {/* Expanded Player - Progress Bar */}
-                {isExpanded && (
-                    <div className="mt-3.5 pt-3.5 border-t border-neutral-150 dark:border-neutral-850">
-                        {/* Progress Bar */}
-                        <div className="flex items-center gap-3">
-                            <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 w-8 text-right tabular-nums">
-                                {formatTime(currentTime)}
-                            </span>
+                <AnimatePresence initial={false}>
+                    {isExpanded && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{
+                                height: 'auto',
+                                opacity: 1,
+                                transition: {
+                                    height: {
+                                        type: 'spring',
+                                        stiffness: 120,
+                                        damping: 20,
+                                    },
+                                    opacity: {
+                                        duration: 0.25,
+                                        ease: 'easeOut',
+                                    },
+                                },
+                            }}
+                            exit={{
+                                height: 0,
+                                opacity: 0,
+                                transition: {
+                                    height: {
+                                        type: 'spring',
+                                        stiffness: 120,
+                                        damping: 20,
+                                    },
+                                    opacity: {
+                                        duration: 0.15,
+                                        ease: 'easeIn',
+                                    },
+                                },
+                            }}
+                            className="overflow-hidden"
+                        >
+                            <div className="mt-3.5 pt-3.5 border-t border-neutral-150 dark:border-neutral-850">
+                                {/* Progress Bar */}
+                                <div className="flex items-center gap-3">
+                                    <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 w-8 text-right tabular-nums">
+                                        {formatTime(currentTime)}
+                                    </span>
 
-                            {/* Clickable Progress Bar */}
-                            <div
-                                ref={progressRef}
-                                onClick={handleProgressClick}
-                                className="flex-1 relative h-1 cursor-pointer group"
-                            >
-                                {/* Track background */}
-                                <div className="absolute inset-0 bg-neutral-200/80 dark:bg-neutral-800 rounded-full" />
+                                    {/* Clickable Progress Bar */}
+                                    <div
+                                        ref={progressRef}
+                                        onClick={handleProgressClick}
+                                        className="flex-1 relative h-1 cursor-pointer group"
+                                    >
+                                        {/* Track background */}
+                                        <div className="absolute inset-0 bg-neutral-200/80 dark:bg-neutral-800 rounded-full" />
 
-                                {/* Progress fill */}
-                                <div
-                                    className="absolute left-0 top-0 bottom-0 bg-[#1DB954] rounded-full transition-all"
-                                    style={{ width: `${progressPercent}%` }}
-                                />
+                                        {/* Progress fill */}
+                                        <div
+                                            className="absolute left-0 top-0 bottom-0 bg-[#1DB954] rounded-full transition-all"
+                                            style={{ width: `${progressPercent}%` }}
+                                        />
 
-                                {/* Thumb */}
-                                <div
-                                    className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-neutral-850 dark:bg-[#1DB954] rounded-full shadow transition-all scale-0 group-hover:scale-100"
-                                    style={{
-                                        left: `calc(${Math.min(Math.max(progressPercent, 0), 100)}% - 5px)`,
-                                        boxShadow: '0 1px 3px rgba(0,0,0,0.2)'
-                                    }}
-                                />
+                                        {/* Thumb */}
+                                        <div
+                                            className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-neutral-850 dark:bg-[#1DB954] rounded-full shadow transition-all scale-0 group-hover:scale-100"
+                                            style={{
+                                                left: `calc(${Math.min(Math.max(progressPercent, 0), 100)}% - 5px)`,
+                                                boxShadow: '0 1px 3px rgba(0,0,0,0.2)'
+                                            }}
+                                        />
+                                    </div>
+
+                                    <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 w-8 tabular-nums">
+                                        {formatTime(duration)}
+                                    </span>
+                                </div>
                             </div>
-
-                            <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 w-8 tabular-nums">
-                                {formatTime(duration)}
-                            </span>
-                        </div>
-                    </div>
-                )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </div>
     )
