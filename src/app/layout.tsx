@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
     images: [{
-      url: '/open-graph.png',
+      url: '/OG_1.png',
       width: 1200,
       height: 630,
       alt: 'Bharath - Portfolio'
