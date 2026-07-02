@@ -62,7 +62,7 @@ export default function Reachout({
                     <div className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900">
                       <div className="flex items-center gap-3">
                         <Image
-                          src="/pfp_github.png"
+                          src="/pfp.jpg"
                           alt=" Bharath"
                           width={56}
                           height={56}
@@ -123,7 +123,7 @@ export default function Reachout({
                   <Image
                     width={1206}
                     height={1220}
-                    src="/twitter_2.png"
+                    src="/twt.png"
                     alt="Twitter"
                     className="rounded-sm max-w-full h-auto"
                     unoptimized
