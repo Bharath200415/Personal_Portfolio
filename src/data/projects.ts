@@ -52,7 +52,7 @@ export const projects: Project[] = [
     title: "Wingman",
     description: "WhatsApp chat analyzer that turns your exported chats into 12 brutally honest analytics charts with an AI analyst.",
     longDescription: "Parses WhatsApp .txt exports and generates 12 charts covering response times, activity heatmaps, double-text analysis, emoji usage, conversation gaps, and daily streaks\n\nP50/P90/P99 response time percentiles per person — the same latency metrics used in backend engineering, applied to your chats\n\nGroq-powered AI analyst (Llama 3.3 70B) answers natural language questions about your chat patterns with full context awareness\n\nPersistent chat history via localStorage — multiple chats saved, switchable from a collapsible sidebar without re-uploading\n\nFastAPI backend handles all parsing and chart generation server-side; React/Vite frontend renders analytics with Recharts",
-    liveLink: "https://https://wingmanassists.vercel.app/",
+    liveLink: "https://wingmanassists.vercel.app/",
     githubLink: "https://github.com/bharath200415/wingman",
     video: 'wingman',
     image: '/images/wingman3.webp',
