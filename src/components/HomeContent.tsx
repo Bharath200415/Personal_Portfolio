@@ -38,7 +38,7 @@ export default function NewHeroSection() {
           <Reveal delay={0.1}>
             <BannerSection 
               bannerImage="/pixel-mountain-lake.png"
-              quote="You make your own luck if you stay at it long enough!"
+              quote="Build what you wish existed."
             />
           </Reveal>
           
