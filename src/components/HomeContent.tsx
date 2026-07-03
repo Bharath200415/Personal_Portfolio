@@ -202,7 +202,7 @@ export default function NewHeroSection() {
               <Reveal delay={0.1}>
                 <div className="sm:px-12 py-2">
                   <div className="px-4 mb-4 sm:mb-6 mt-4 sm:mt-6">
-                    <h2 className="text-base sm:text-xl opacity-70 font-[family-name:var(--font-instrument-serif)]">Thoughts</h2>
+                    <h2 className="text-base sm:text-xl opacity-50 font-[family-name:var(--font-instrument-serif)]">Curated Reads</h2>
                   </div>
                   <div className="px-4">
                     <div className="space-y-0 group">

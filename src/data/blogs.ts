@@ -1,7 +1,18 @@
 import { BlogPost } from '@/types/blog'
 
 export const blogs: BlogPost[] = [
-
+  {
+    id: 'first-principles',
+    title: 'How I Think About CP & DSA From First Principles',
+    readTime: '7 min read',
+    externalUrl: 'https://x.com/Divyansh91565/status/2071916367356567946?s=20'
+  },
+  {
+    id: 'free-lancing',
+    title: 'How to Land Your FIRST Freelance Client',
+    readTime: '6 min read',
+    externalUrl: 'https://x.com/buildwithsid/status/2035730095856390218?s=20'
+  },
   {
     id: 'problem-solving',
     title: 'How I Choose Problems, Solve Them, and End Up Getting Traction',
