@@ -132,10 +132,10 @@ export const projects: Project[] = [
     id: 'vaultx',
     title: "Vault-X",
     description: " A mini cloud storage app for uploading, managing, and sharing files using AWS services.",
-    longDescription: "A mini cloud storage app for uploading, managing, and sharing files using AWS services.",
+    longDescription: "A mini cloud storage app for uploading, managing, and sharing files using AWS S3 bucket, all handled seamlessly with just an upload.",
     liveLink: "https://vaultx.bharath.codes",
     githubLink: "https://github.com/bharath200415/vaultx",
-    video: 'mind-mentor',
+    video: '',
     image: '/vaultx.webp',
     tweetUrl: "",
     tags: [
