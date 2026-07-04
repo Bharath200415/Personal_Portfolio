@@ -22,8 +22,8 @@ export default function ExperienceContent() {
   const experiences: ExperienceItem[] = [
     {
       company: "Kylix Studio",
-      position: "Founder & Lead Developer",
-      duration: "June 2025 – Present",
+      position: "Founder",
+      duration: "June 2026 – Present",
       description: "Founded and lead Kylix Studio, a design-driven web development agency focused on building modern digital experiences for startups, businesses, and creators. Oversee the complete project lifecycle, from branding and UI/UX design to full-stack development, deployment, and client communication.",
       achievements: [
       "Designed and developed responsive, high-performance websites and web applications using Next.js, React, TypeScript, Tailwind CSS, and modern backend technologies.",
@@ -32,7 +32,7 @@ export default function ExperienceContent() {
       "Created custom brand identities, landing pages, and digital experiences that improved online presence and user engagement for clients.",
       "Implemented SEO best practices, performance optimizations, and accessibility standards to ensure production-ready web experiences.",
       ],
-      href: "https://kylixstudio.vercel.app/",
+      href: "https://bharath.codes/",
       logoUrl: "/Logo_Kylix (2).png",
     },
     {
