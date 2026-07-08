@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { ScrollToTop } from "@/components/ui/ScrollAnimations"
 import GradualBlur from "@/components/GradualBlur"
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const hkGrotesk = Hanken_Grotesk({
   weight: ['400'],
@@ -50,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+
         <link rel="icon" href="/pfp.jpg" />
         <meta name="google-site-verification" content="tMCNs2fgM6voEHBd3JsySffMFSiUCQDEFEF1iYI3-ZQ" />
       </head>
@@ -73,6 +75,7 @@ export default function RootLayout({
           />
           <ScrollToTop />
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-4B5V7RW0N3" />
        <script
           src="https://cdn.databuddy.cc/databuddy.js"
           data-client-id="2cYj0B5Uv0T4q70DhnoAc"
