@@ -43,6 +43,7 @@ bun-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/sponsors
 
 videos/*.json
 

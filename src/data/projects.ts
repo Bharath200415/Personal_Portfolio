@@ -10,7 +10,7 @@ export const projects: Project[] = [
   //   githubLink: "https://github.com/Bharath200415/CodeSync",
   //   video: 'doable',
   //   image: '/images/doable.png',
-  //   tweetUrl: "https://x.com/code_kartik/status/1983166411192340957",
+  //   tweetUrl: "",
   //   tags: [
   //     "Next.js",
   //     "Tailwind CSS",
@@ -42,8 +42,7 @@ export const projects: Project[] = [
     "Redis",
     "Docker",
     "Cloudflare R2",
-    "Microservices",
-    "DevOps"
+    "Microservices"
     ],
 
   },
@@ -71,7 +70,7 @@ export const projects: Project[] = [
   {
       id: 'typescrape',
       title: "TypeScrape",
-      description: "Reverse-engineer any website's design system — fonts, colors, spacing, and shadows — in seconds.",
+      description: "Reverse-engineer any website's design system: fonts, colors, spacing, and shadows in seconds.",
       longDescription: "Scrapes fully JS-rendered pages via Anakin AI's Browser API to extract real design tokens no static parser can find\n\nExtracts fonts using a three-layer pipeline: Anakin CDP connection, @font-face CSS parsing, and Google Fonts link tag detection\n\nFeeds extracted tokens into Gemini 1.5 Pro to generate brand personality analysis, UI style classification, and UX strategy breakdown\n\nOutputs a production-ready tailwind.config.ts, design tokens JSON, and CSS custom properties — ready to drop into any project",
       liveLink: "https://typescrape.vercel.app",
       githubLink: "https://github.com/Bharath200415/TypeScrape",
@@ -96,7 +95,7 @@ export const projects: Project[] = [
       "Clean yet elegant SaaS Agency landing page with microinteractions powered by motion/react.",
     liveLink: "https://agenforce-marketing-template.vercel.app/",
     githubLink: "https://github.com/Bharath200415/AgenForce_LandingPage",
-    video: "oneurl",
+    video: "",
     image: "/images/agenforce.webp",
     tweetUrl: "",
     tags: [
@@ -107,6 +106,27 @@ export const projects: Project[] = [
       "LocalStorage",
     ],
   },
+{
+  id: 'taskflow-cli',
+  title: "Taskflow CLI",
+  description: "A lightweight terminal-based task manager that can be accessed from any directory.",
+  longDescription:
+    "A globally installable command-line todo application built with Node.js for developers who prefer staying inside the terminal.\n\nSupports adding, listing, completing, and deleting tasks through intuitive CLI commands with an interactive interface powered by Inquirer.js.\n\nDisplays tasks in a clean tabular format with timestamps, colored status indicators, and persistent local JSON storage for a fast, dependency-free experience.",
+  liveLink: "",
+  githubLink: "https://github.com/bharath200415/todo-cli",
+  video: "",
+  image: "/images/todo_cli.webp",
+  tweetUrl: "",
+  tags: [
+    "Node.js",
+    "JavaScript",
+    "Commander.js",
+    "Inquirer.js",
+    "Chalk",
+    "CLI",
+    "NPM"
+  ],
+},
    {
     id: 'graminSeva',
     title: "Gramin Seva",
@@ -175,10 +195,10 @@ export const projects: Project[] = [
     title: "ZenNotes",
     description: "A go-to Note taking App, which stores everything locally on the browser and fetches notes from the browser's local data when rendered.",
     longDescription:
-      "OneURL is an open-source alternative to Linktree. Create a beautiful profile page to share all your important links in one place.",
+      "A go-to Note taking App, which stores everything locally on the browser and fetches notes from the browser's local data when rendered.",
     liveLink: "https://zennotes.bharath.codes",
     githubLink: "https://github.com/bharath200415/zennotes",
-    video: "oneurl",
+    video: "",
     image: "/zennotes.webp",
     tweetUrl: "",
     tags: [
