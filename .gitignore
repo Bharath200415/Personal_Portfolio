@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 videos/*
+/videos
 
 # dependencies
 /node_modules
@@ -42,6 +43,8 @@ bun-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+videos/*.json
 
 # next-video
 videos/*
