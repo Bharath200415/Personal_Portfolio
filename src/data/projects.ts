@@ -113,7 +113,7 @@ export const projects: Project[] = [
   longDescription:
     "A globally installable command-line todo application built with Node.js for developers who prefer staying inside the terminal.\n\nSupports adding, listing, completing, and deleting tasks through intuitive CLI commands with an interactive interface powered by Inquirer.js.\n\nDisplays tasks in a clean tabular format with timestamps, colored status indicators, and persistent local JSON storage for a fast, dependency-free experience.",
   liveLink: "",
-  githubLink: "https://github.com/bharath200415/todo-cli",
+  githubLink: "https://github.com/bharath200415/Taskflow_CLI",
   video: "",
   image: "/images/todo_cli.webp",
   tweetUrl: "",
