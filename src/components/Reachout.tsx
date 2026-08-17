@@ -25,8 +25,7 @@ export default function Reachout({
     twitter: "https://x.com/bharathships",
     github: "https://github.com/bharath200415",
     linkedin: "https://www.linkedin.com/in/bharathcodes/",
-    // resume: "https://drive.google.com/file/d/1U8450r8Qsf9Xo1IcQhMdSrdzFY2__JXP/view?usp=sharing",
-    resume: "https://drive.google.com/file/d/1zqQYwQj1Q6D-HuQ94sw1UpVWXuoT-aPD/view?usp=sharing",
+    resume: "https://drive.google.com/file/d/1fEN8x3dt3J3JbtO2ne3F_zQ-Qr_i3Hfb/view?usp=sharing",
     mail: "mailto:bharath200415@gmail.com"
   }
 }: ReachoutProps) {
