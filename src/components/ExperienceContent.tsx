@@ -21,6 +21,19 @@ export default function ExperienceContent() {
 
   const experiences: ExperienceItem[] = [
     {
+      company: "Trakto",
+      position: "Software Engineer Intern",
+      duration: "July 2026 – Present",
+      description: "",
+      achievements: [
+"Developed 3 core modules– Subcontracting (Job Work), Inventory and Ledger– for a cloud-based Manufacturing ERP streamlining vendor operations and material tracking across 2+ vendor workflows",
+" Designed backend business logic, data models and database workflows for inventory reconciliation and ledger transactions, reducing data inconsistencies by 10% across subcontracting processes.",
+"Collaborated with product managers and business stakeholders to design, develop, test, and deploy scalable ERP features, improving system reliability and streamlining manufacturing operations."
+      ],
+      href: "https://trakto.tech/",
+      logoUrl: "/images/trakto.png",
+    },
+    {
       company: "Kylix Studio",
       position: "Founder",
       duration: "June 2026 – Present",
