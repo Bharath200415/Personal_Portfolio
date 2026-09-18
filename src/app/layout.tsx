@@ -23,14 +23,14 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bharath.codes'),
+  metadataBase: new URL('https://bharathships.me'),
   title: 'Bharath',
   description: 'I build products that solve real problems. Available for new opportunities.',
   icons: {
     icon: '/pfp.jpg',
   },
   openGraph: {
-    url: 'https://bharath.codes/',
+    url: 'https://bharathships.me/',
     siteName: 'Bharath Portfolio',
     locale: 'en_US',
     type: 'website',
