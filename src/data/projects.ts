@@ -127,6 +127,44 @@ export const projects: Project[] = [
     "NPM"
   ],
 },
+  {
+    id: "snapQR",
+    title: "SnapQR",
+    description: "SnapQR is a lightweight Chrome extension that instantly converts any link into a downloadable QR code along with copy to clipboard option using REST API.",
+    longDescription:
+      "BetterShot is an open-source alternative to CleanShot X for macOS. Capture, edit, and enhance your screenshots with professional quality.",
+    liveLink: "https://github.com/bharath200415/snapqr",
+    githubLink: "https://github.com/bharath200415/snapqr",
+    video: "https://pub-52330599f4c24002984ec170d5e0354d.r2.dev/cursorful-video-1768649132147%20(1).mp4",
+    image: "/snapqr.webp",
+    tweetUrl: "",
+    tags: [
+      "HTML",
+      "Tailwind CSS",
+      "JavaScript",
+      "Canvas API",
+      "REST API",
+    ],
+  },
+    {
+    id: "zenNotes",
+    title: "ZenNotes",
+    description: "A go-to Note taking App, which stores everything locally on the browser and fetches notes from the browser's local data when rendered.",
+    longDescription:
+      "A go-to Note taking App, which stores everything locally on the browser and fetches notes from the browser's local data when rendered.",
+    liveLink: "https://zennotes.bharathships.me",
+    githubLink: "https://github.com/bharath200415/zennotes",
+    video: "",
+    image: "/zennotes.webp",
+    tweetUrl: "",
+    tags: [
+      "React.js",
+      "JavaScript",
+      "Shadcn UI",
+      "Tailwind CSS",
+      "LocalStorage",
+    ],
+  },
    {
     id: 'graminSeva',
     title: "Gramin Seva",
@@ -190,44 +228,8 @@ export const projects: Project[] = [
   },
 
 
-  {
-    id: "zenNotes",
-    title: "ZenNotes",
-    description: "A go-to Note taking App, which stores everything locally on the browser and fetches notes from the browser's local data when rendered.",
-    longDescription:
-      "A go-to Note taking App, which stores everything locally on the browser and fetches notes from the browser's local data when rendered.",
-    liveLink: "https://zennotes.bharathships.me",
-    githubLink: "https://github.com/bharath200415/zennotes",
-    video: "",
-    image: "/zennotes.webp",
-    tweetUrl: "",
-    tags: [
-      "React.js",
-      "JavaScript",
-      "Shadcn UI",
-      "Tailwind CSS",
-      "LocalStorage",
-    ],
-  },
-  {
-    id: "snapQR",
-    title: "SnapQR",
-    description: "SnapQR is a lightweight Chrome extension that instantly converts any link into a downloadable QR code along with copy to clipboard option using REST API.",
-    longDescription:
-      "BetterShot is an open-source alternative to CleanShot X for macOS. Capture, edit, and enhance your screenshots with professional quality.",
-    liveLink: "https://github.com/bharath200415/snapqr",
-    githubLink: "https://github.com/bharath200415/snapqr",
-    video: "https://pub-52330599f4c24002984ec170d5e0354d.r2.dev/cursorful-video-1768649132147%20(1).mp4",
-    image: "/snapqr.webp",
-    tweetUrl: "",
-    tags: [
-      "HTML",
-      "Tailwind CSS",
-      "JavaScript",
-      "Canvas API",
-      "REST API",
-    ],
-  },
+
+
 
 ];
 
