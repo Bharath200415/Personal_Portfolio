@@ -45,7 +45,7 @@ export default function ExperienceContent() {
       "Created custom brand identities, landing pages, and digital experiences that improved online presence and user engagement for clients.",
       "Implemented SEO best practices, performance optimizations, and accessibility standards to ensure production-ready web experiences.",
       ],
-      href: "https://kylix.bharath.codes/",
+      href: "https://kylix.bharathships.me/",
       logoUrl: "/Logo_Kylix (2).png",
     },
     {
