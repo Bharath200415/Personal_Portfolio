@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import DiagonalPattern from './DiagonalPattern'
 import BannerSection from './BannerSection'
 import ProfileHeader from './ProfileHeader'
@@ -47,7 +48,7 @@ export default function NewHeroSection() {
             <ProfileHeader 
               name="Bharath"
               age="21"
-              title="fullstack developer • designer "
+              titles={["Full-Stack Developer", "Design Engineer"]}
               profileImage="/pfp.jpg"
               socialLinks={{
                 twitter: "https://x.com/bharathships",
@@ -66,7 +67,7 @@ export default function NewHeroSection() {
                 <ContentSection
                   subtitle="AI Engineer | Full-stack Developer"
                   title=''
-                  className="mt-6"
+                  className="mt-2"
                 >
                   <div></div>
                 </ContentSection>
@@ -78,19 +79,22 @@ export default function NewHeroSection() {
               
               {/* About Section */}
               <Reveal delay={0.1}>
-                <ContentSection className="pb-6 sm:pb-8 pt-4 sm:pt-6 px-2 sm:px-0">
-                  <ContentParagraph className="mb-2 text-base sm:text-lg">
-                    <span className="font-medium dark:text-white text-black">I build from zero.</span> Whether it&apos;s frontend, backend, full-stack applications, or AI-powered experiences, I work across the entire development lifecycle. From UI/UX to deployment to user feedback, I care less about technology debates and more about delivering results that people love using.
-                  </ContentParagraph>
+                <ContentSection className="py-6 sm:pt-6 sm:pb-8">
+                  <div className="not-prose space-y-4 sm:space-y-5">
+                    <ContentParagraph className="text-[15px] sm:text-lg  leading-[1.75] text-pretty">
+                      <span className="font-medium dark:text-white text-black">I build from zero.</span> I started as a UI/UX designer, reworking onboarding flows until user activation climbed 10%. Then I wanted to ship what I was drawing, so I learned the backend too. Now I write inventory and ledger logic for a manufacturing ERP at <span className="dark:text-white/90 text-black/90">Trakto</span>, and through my studio, <span className="dark:text-white/90 text-black/90">Kylix</span>, I&apos;ve taken 10+ client projects from wireframe to launch.
+                    </ContentParagraph>
 
-                  <div className="mt-4 -mb-3 sm:mt-6 sm:px-0">
+                  </div>
+
+                  <div className="mt-6 sm:mt-8">
                     <SpotifyPlayer />
                   </div>
                 </ContentSection>
               </Reveal>
 
               <Reveal delay={0.05}>
-                <SectionBorder className="mt-6" />
+                <SectionBorder />
               </Reveal>
 
                {/* Experience Section */}
@@ -122,9 +126,9 @@ export default function NewHeroSection() {
                   </div>
                   <div className="px-4 flex justify-center mt-6 sm:mt-8 mb-4 sm:mb-6">
                     <Link href="/projects">
-                      <NeumorphButton className="inline-flex items-center gap-1 px-4 py-2 text-xs sm:text-sm text-neutral-800 dark:text-white/80 hover:text-neutral-900 dark:hover:text-white">
+                      <NeumorphButton className="group inline-flex items-center gap-1.5 px-4 py-2 text-xs sm:text-sm text-neutral-800 dark:text-white/80 hover:text-neutral-900 dark:hover:text-white">
                         <span>View All</span>
-                        <span>→</span>
+                        <ArrowRight className="size-3.5 sm:size-4 transition-transform duration-150 ease-out group-hover:translate-x-0.5" strokeWidth={2} aria-hidden="true" />
                       </NeumorphButton>
                     </Link>
                   </div>
@@ -152,9 +156,9 @@ export default function NewHeroSection() {
                   </div>
                   <div className="px-4 flex justify-center mt-6 sm:mt-8 mb-4 sm:mb-6">
                     <Link href="/sponsors">
-                      <NeumorphButton className="inline-flex items-center gap-1 px-4 py-2 text-xs sm:text-sm text-neutral-800 dark:text-white/80 hover:text-neutral-900 dark:hover:text-white">
+                      <NeumorphButton className="group inline-flex items-center gap-1.5 px-4 py-2 text-xs sm:text-sm text-neutral-800 dark:text-white/80 hover:text-neutral-900 dark:hover:text-white">
                         <span>View All</span>
-                        <span>→</span>
+                        <ArrowRight className="size-3.5 sm:size-4 transition-transform duration-150 ease-out group-hover:translate-x-0.5" strokeWidth={2} aria-hidden="true" />
                       </NeumorphButton>
                     </Link>
                   </div>
@@ -213,9 +217,9 @@ export default function NewHeroSection() {
                   </div>
                   <div className="px-4 flex justify-center mt-6 sm:mt-8 mb-4 sm:mb-6">
                     <Link href="/blogs">
-                      <NeumorphButton className="inline-flex items-center gap-1 px-4 py-2 text-xs sm:text-sm text-neutral-800 dark:text-white/80 hover:text-neutral-900 dark:hover:text-white">
+                      <NeumorphButton className="group inline-flex items-center gap-1.5 px-4 py-2 text-xs sm:text-sm text-neutral-800 dark:text-white/80 hover:text-neutral-900 dark:hover:text-white">
                         <span>View All</span>
-                        <span>→</span>
+                        <ArrowRight className="size-3.5 sm:size-4 transition-transform duration-150 ease-out group-hover:translate-x-0.5" strokeWidth={2} aria-hidden="true" />
                         
                       </NeumorphButton>
                     </Link>

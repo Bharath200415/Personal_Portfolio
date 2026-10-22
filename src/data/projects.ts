@@ -67,6 +67,26 @@ export const projects: Project[] = [
       "localStorage"
     ],
   },
+
+  {
+    id: 'canvasflow',
+    title: "CanvasFlow",
+    description: "Real-time collaborative whiteboard with live cursors, shared rooms, and infinite pan/zoom.",
+    longDescription: "Collaborative whiteboard built on HTML5 Canvas with 10 drawing tools, image paste, and an infinite pan/zoom canvas\n\nEvent-sourced WebSocket sync engine: every stroke is a Zod-validated event, replayed in order so every client in a room converges on the same board\n\nLive cursors and conflict resolution keep concurrent edits consistent when multiple people draw in the same room at once\n\nPer-user undo/redo built on inverse events. Undoing your own stroke syncs to collaborators without rolling back anyone else's work\n\nNode.js backend containerized with Docker for consistent local and production deploys",
+    liveLink: "https://canvasflow.bharathships.me/",
+    githubLink: "https://github.com/bharath200415/canvasflow",
+    video: 'wingman',
+    image: '/images/wingman3.webp',
+    tweetUrl: "",
+    tags: [
+      "HTML5 Canvas",
+      "WebSockets",
+      "Node.js",
+      "Zod",
+      "Event Sourcing",
+      "Docker"
+    ],
+  },
   {
       id: 'typescrape',
       title: "TypeScrape",

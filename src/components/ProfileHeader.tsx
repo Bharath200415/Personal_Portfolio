@@ -6,11 +6,12 @@ import * as React from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import PortfolioStars from './PortfolioStars';
 import NeumorphButton from "./NeumorphButton";
+import FlipTitle from "./FlipTitle";
 
 interface ProfileHeaderProps {
   name?: string
   age?: string
-  title?: string
+  titles?: string[]
   profileImage?: string
   socialLinks?: {
     twitter?: string
@@ -23,7 +24,7 @@ interface ProfileHeaderProps {
 export default function ProfileHeader({
   name = "N Bharath",
   age = "21",
-  title = "engineer • developer • builder",
+  titles = ["fullstack developer", "design engineer"],
   profileImage = "/pfp.jpg",
   socialLinks = {
     twitter: "https://x.com/zusty_dev",
@@ -56,7 +57,7 @@ export default function ProfileHeader({
             {name}
           </h1>
           <p className="opacity-40 text-xs sm:text-sm">
-            {age} • {title}
+            {age} • <FlipTitle titles={titles} />
           </p>
         </div>
         <div className="flex justify-start gap-1 sm:gap-2 mt-3 sm:mt-0 px-0">

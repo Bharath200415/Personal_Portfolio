@@ -1,13 +1,18 @@
 'use client'
 
+import { useEffect } from 'react'
 import Image from 'next/image'
+import { useTheme } from 'next-themes'
+import { getCalApi } from '@calcom/embed-react'
 import NeumorphButton from './NeumorphButton'
+
+const CAL_NAMESPACE = '15min'
 
 interface CallToActionProps {
   profileImage?: string
   profileAlt?: string
   linkText?: string
-  linkUrl?: string
+  calLink?: string
   preText?: string
 }
 
@@ -15,19 +20,34 @@ export default function CallToAction({
   profileImage = "/pfp.jpg",
   profileAlt = "Profile",
   linkText = "Book a Free Call",
-  linkUrl = "https://cal.com/bharathcodes/15min",
+  calLink = "bharathcodes/15min",
   preText = "If you've read this far, you might be interested in what I do."
 }: CallToActionProps) {
+  const { resolvedTheme } = useTheme()
+
+  // Load the Cal.com embed once and keep the booking modal in sync with the site theme.
+  useEffect(() => {
+    (async () => {
+      const cal = await getCalApi({ namespace: CAL_NAMESPACE })
+      cal("ui", {
+        theme: resolvedTheme === "dark" ? "dark" : "light",
+        layout: "month_view",
+        hideEventTypeDetails: false,
+      })
+    })()
+  }, [resolvedTheme])
 
   return (
     <div className="mt-4 sm:mt-6 pb-6 sm:pb-8 flex flex-col items-center w-full">
       <p className="text-neutral-600 dark:text-neutral-400 font-[family-name:var(--font-instrument-serif)] italic text-base sm:text-xl mb-3 text-center">{preText}</p>
       <div className="mt-3 sm:mt-0">
-        <a
-          href={linkUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group inline-flex touch-manipulation active:opacity-75"
+        <button
+          type="button"
+          data-cal-namespace={CAL_NAMESPACE}
+          data-cal-link={calLink}
+          data-cal-config='{"layout":"month_view"}'
+          aria-haspopup="dialog"
+          className="group inline-flex touch-manipulation active:opacity-75 cursor-pointer"
           style={{ 
             WebkitTapHighlightColor: 'transparent',
             WebkitTouchCallout: 'none',
@@ -72,7 +92,7 @@ export default function CallToAction({
               </span>
             </div>
           </NeumorphButton>
-        </a>
+        </button>
       </div>
     </div>
   )
