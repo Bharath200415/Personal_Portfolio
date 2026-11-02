@@ -76,7 +76,7 @@ export const projects: Project[] = [
     liveLink: "https://canvasflow.bharathships.me/",
     githubLink: "https://github.com/bharath200415/canvasflow",
     video: 'wingman',
-    image: '/images/wingman3.webp',
+    image: '/images/canvasflow.webp',
     tweetUrl: "",
     tags: [
       "HTML5 Canvas",
