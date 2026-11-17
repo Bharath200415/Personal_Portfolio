@@ -46,14 +46,14 @@ export default function NewHeroSection() {
           <Reveal delay={0.2}>
             <ProfileHeader 
               name="Bharath"
-              age="21"
+              age="22"
               titles={["Full-Stack Developer", "Design Engineer"]}
               profileImage="/pfp.jpg"
               socialLinks={{
                 twitter: "https://x.com/bharathships",
                 github: "https://github.com/bharath200415",
                 linkedin: "https://www.linkedin.com/in/bharathcodes/",
-                resume: "https://drive.google.com/file/d/13Y2Btu-bem4QXGSCCe7Ff2VRiEd3sdL4/view?usp=sharing",
+                resume: "https://drive.google.com/file/d/1MyDKUmPGJ08TAcYjyr3n1iDZ_c0uyu6R/view?usp=sharing",
               }}
             />
           </Reveal>

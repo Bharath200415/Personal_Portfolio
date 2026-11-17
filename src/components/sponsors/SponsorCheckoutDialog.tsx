@@ -399,11 +399,11 @@ function DialogBody({ onClose, priceUsd }: Omit<SponsorCheckoutDialogProps, 'ope
               'border border-black/90 text-white',
               'bg-[linear-gradient(180deg,#3a3a3c_0%,#1f1f21_48%,#141415_100%)]',
               'shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_-1px_0_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.18),0_8px_16px_-8px_rgba(0,0,0,0.5)]',
-              // Dark mode: same treatment inverted so it still pops off the dark panel.
-              'dark:border-white/70 dark:text-neutral-900',
-              'dark:bg-[linear-gradient(180deg,#ffffff_0%,#f1f1f2_55%,#e4e4e7_100%)]',
-              'dark:shadow-[inset_0_1px_0_rgba(255,255,255,1),inset_0_-1px_0_rgba(0,0,0,0.08),0_8px_16px_-8px_rgba(0,0,0,0.7)]',
-              'transition-[transform,filter,opacity] duration-150 ease-out hover:brightness-[1.12] dark:hover:brightness-[0.97]',
+              // Dark mode: same dark pill, lifted off the panel with a soft glow rising from the top edge.
+              'dark:border-black/70 dark:text-white',
+              'dark:bg-[radial-gradient(120%_90%_at_50%_0%,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_60%),linear-gradient(180deg,#3d3d41_0%,#2a2a2d_50%,#1e1e21_100%)]',
+              'dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),inset_0_-1px_0_rgba(0,0,0,0.45),0_2px_6px_-3px_rgba(0,0,0,0.5)]',
+              'transition-[transform,filter,opacity] duration-150 ease-out hover:brightness-[1.12]',
               'motion-safe:active:scale-[0.985] disabled:opacity-70 disabled:hover:brightness-100',
             )}
           >
