@@ -67,7 +67,7 @@ export default function SponsorWall({ sponsors: staticSponsors, className }: Spo
 
   return (
     <div className={className}>
-      <p className="text-[15px] leading-[1.75] text-neutral-500 text-pretty sm:text-base sm:text-balance dark:text-neutral-400">
+      <p className="text-[15px] leading-[1.75] text-neutral-500 text-pretty sm:text-base dark:text-neutral-400">
         You just scrolled to the most important section of the site. Everything here is built and
         kept running by me, with a little help from the people below.
       </p>
