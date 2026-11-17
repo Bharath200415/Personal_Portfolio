@@ -12,6 +12,9 @@ import { tileFrame, tileLift } from './tile-styles'
 
 export const SPONSOR_PRICE_USD = process.env.NEXT_PUBLIC_SPONSOR_PRICE_USD || '10'
 
+/** Open "+" slots shown after the sponsors. Each one opens the same checkout. */
+const EMPTY_SLOTS = 5
+
 const SUPPORT_LINKS = {
   github: 'https://github.com/bharath200415',
   x: 'https://x.com/bharathships',
@@ -127,13 +130,16 @@ export default function SponsorWall({ sponsors: staticSponsors, className }: Spo
           )
         })}
 
-        <li>
+        {Array.from({ length: EMPTY_SLOTS }, (_, i) => (
+        <li key={`slot-${i}`}>
           <Tooltip>
             <TooltipTrigger asChild>
               <button
-                ref={addTileRef}
                 type="button"
-                onClick={() => setDialogOpen(true)}
+                onClick={(e) => {
+                  addTileRef.current = e.currentTarget
+                  setDialogOpen(true)
+                }}
                 aria-label={`Become a supporter for $${SPONSOR_PRICE_USD}`}
                 aria-haspopup="dialog"
                 className={cn(
@@ -154,6 +160,7 @@ export default function SponsorWall({ sponsors: staticSponsors, className }: Spo
             </TooltipContent>
           </Tooltip>
         </li>
+        ))}
       </ul>
 
       {/* Free ways to support */}
