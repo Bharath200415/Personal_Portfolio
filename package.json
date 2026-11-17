@@ -20,6 +20,7 @@
     "@upstash/redis": "^1.36.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dodopayments": "^2.63.0",
     "framer-motion": "^12.9.2",
     "lucide-react": "^0.483.0",
     "mathjs": "^14.6.0",

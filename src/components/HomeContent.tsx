@@ -20,8 +20,7 @@ import { MasonryProjectCard } from './MasonryProjectCard'
 import { blogs } from '@/data/blogs'
 import { BlogCard } from './BlogCard'
 import { sponsors } from '@/data/sponsors'
-import SponsorShowcase from './SponsorShowcase'
-import SponsorButton from './SponsorButton'
+import SponsorWall from './sponsors/SponsorWall'
 import NeumorphButton from './NeumorphButton'
 import SpotifyPlayer from './SpotifyPlayer'
 
@@ -142,32 +141,20 @@ export default function NewHeroSection() {
 
               
               {/* Sponsors Section */}
-              {/* <Reveal delay={0.1}>
-                <div className="sm:px-12 py-2">
-                  <div className="px-4 mb-4 sm:mb-6 mt-4 sm:mt-6 flex items-center justify-between">
-                  <h2 className="text-base sm:text-xl opacity-60 font-[family-name:var(--font-instrument-serif)]">Sponsors</h2>
-                    <SponsorButton 
-                      href="https://github.com/sponsors/KartikLabhshetwar"
-                      tooltipText="Support my open source work"
-                    />
+              <Reveal delay={0.1}>
+                <section id="sponsors" className="sm:px-12 py-2 scroll-mt-8">
+                  <div className="px-4 mb-4 sm:mb-6 mt-4 sm:mt-6">
+                    <h2 className="text-base sm:text-xl opacity-70 font-[family-name:var(--font-instrument-serif)]">Sponsors</h2>
                   </div>
-                  <div className="px-4 mb-4 sm:mb-6">
-                    <SponsorShowcase sponsors={sponsors} showEmptySlot={false} />
+                  <div className="px-4 mb-6 sm:mb-8">
+                    <SponsorWall sponsors={sponsors} />
                   </div>
-                  <div className="px-4 flex justify-center mt-6 sm:mt-8 mb-4 sm:mb-6">
-                    <Link href="/sponsors">
-                      <NeumorphButton className="group inline-flex items-center gap-1.5 px-4 py-2 text-xs sm:text-sm text-neutral-800 dark:text-white/80 hover:text-neutral-900 dark:hover:text-white">
-                        <span>View All</span>
-                        <ArrowRight className="size-3.5 sm:size-4 transition-transform duration-150 ease-out group-hover:translate-x-0.5" strokeWidth={2} aria-hidden="true" />
-                      </NeumorphButton>
-                    </Link>
-                  </div>
-                </div>
+                </section>
               </Reveal>
               
               <Reveal delay={0.05}>
                 <SectionBorder className="mt-0 pt-0" />
-              </Reveal> */}
+              </Reveal>
               
               {/* GitHub Contributions */}
               <Reveal delay={0.1}>
