@@ -84,7 +84,7 @@ export default function SponsorWall({ sponsors: staticSponsors, className }: Spo
           const host = hostOf(href)
           const tile = (
             <span className="block size-full overflow-hidden rounded-[inherit]">
-              <SponsorLogo src={sponsor.logo} name={sponsor.name} />
+              <SponsorLogo src={sponsor.logo} name={sponsor.name} fit={sponsor.logoFit} />
             </span>
           )
 

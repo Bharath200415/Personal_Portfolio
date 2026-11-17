@@ -80,7 +80,7 @@ export default async function SponsorThanksPage({
             {sponsor && (
               <span className={cn(tileFrame, 'mb-8 bg-neutral-50 dark:bg-neutral-900')}>
                 <span className="block size-full overflow-hidden rounded-[inherit]">
-                  <SponsorLogo src={sponsor.logo} name={sponsor.name} />
+                  <SponsorLogo src={sponsor.logo} name={sponsor.name} fit={sponsor.logoFit} />
                 </span>
               </span>
             )}

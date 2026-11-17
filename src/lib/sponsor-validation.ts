@@ -25,7 +25,8 @@ export function resolveLogo(input: string): string | null {
   return GITHUB_HANDLE.test(handle) ? `https://github.com/${handle}.png?size=200` : null
 }
 
-function normalizeUrl(input: string): string | null {
+/** Accepts "site.com", "https://site.com/x". Returns a full https URL or null. */
+export function normalizeUrl(input: string): string | null {
   const value = input.trim()
   if (!value) return null
   const withScheme = /^https?:\/\//i.test(value) ? value : `https://${value}`
@@ -38,8 +39,16 @@ function normalizeUrl(input: string): string | null {
   }
 }
 
+export interface ValidSubmission {
+  name: string
+  url: string
+  /** Present only when the visitor picked a logo themselves (or the dialog already found one). */
+  logo?: string
+  tagline?: string
+}
+
 export type ValidationResult =
-  | { ok: true; value: { name: string; url?: string; logo: string; tagline?: string } }
+  | { ok: true; value: ValidSubmission }
   | { ok: false; field: keyof SponsorSubmission; error: string }
 
 export function validateSubmission(input: Partial<SponsorSubmission>): ValidationResult {
@@ -49,21 +58,24 @@ export function validateSubmission(input: Partial<SponsorSubmission>): Validatio
     return { ok: false, field: 'name', error: `Keep it under ${SPONSOR_NAME_MAX} characters.` }
   }
 
-  const logo = resolveLogo(input.logo ?? '')
-  if (!logo) {
-    return { ok: false, field: 'logo', error: 'Use a GitHub username or an https:// image link.' }
+  if (!input.url?.trim()) {
+    return { ok: false, field: 'url', error: 'Add your website or a profile link.' }
+  }
+  const url = normalizeUrl(input.url)
+  if (!url) return { ok: false, field: 'url', error: 'That link doesn’t look right.' }
+
+  let logo: string | undefined
+  if (input.logo?.trim()) {
+    const resolved = resolveLogo(input.logo)
+    if (!resolved) {
+      return { ok: false, field: 'logo', error: 'Use a GitHub username or an https:// image link.' }
+    }
+    logo = resolved
   }
 
   const tagline = (input.tagline ?? '').trim().replace(/\s+/g, ' ') || undefined
   if (tagline && tagline.length > SPONSOR_TAGLINE_MAX) {
     return { ok: false, field: 'tagline', error: `Keep it under ${SPONSOR_TAGLINE_MAX} characters.` }
-  }
-
-  let url: string | undefined
-  if (input.url && input.url.trim()) {
-    const normalized = normalizeUrl(input.url)
-    if (!normalized) return { ok: false, field: 'url', error: 'That link doesn’t look right.' }
-    url = normalized
   }
 
   return { ok: true, value: { name, url, logo, tagline } }

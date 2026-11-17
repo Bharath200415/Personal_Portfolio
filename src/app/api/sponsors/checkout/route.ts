@@ -3,6 +3,7 @@ import { randomUUID } from 'crypto'
 import { getDodo, SPONSOR_SLOT_METADATA_KEY } from '@/lib/dodo'
 import { savePendingSponsor } from '@/lib/sponsors-store'
 import { validateSubmission } from '@/lib/sponsor-validation'
+import { findSiteLogo, inspectLogo } from '@/lib/site-logo'
 
 export const dynamic = 'force-dynamic'
 
@@ -21,8 +22,21 @@ export async function POST(request: NextRequest) {
   const slotId = `sp_${randomUUID().replace(/-/g, '').slice(0, 20)}`
   const siteUrl = (process.env.SITE_URL || request.nextUrl.origin).replace(/\/$/, '')
 
+  const { logo, ...rest } = validation.value
+  // A logo from the dialog is re-checked here (and its fit decided here, not by the browser).
+  // No logo yet (the preview hadn't finished): find it from their link.
+  const found = logo
+    ? await inspectLogo(logo).catch(() => null)
+    : await findSiteLogo(rest.url).catch(() => null)
+  if (logo && !found) {
+    return NextResponse.json(
+      { error: 'Couldn’t load that image. Try a different link.', field: 'logo' },
+      { status: 400 },
+    )
+  }
+
   try {
-    await savePendingSponsor(slotId, validation.value)
+    await savePendingSponsor(slotId, { ...rest, logo: found?.logo ?? '', logoFit: found?.fit ?? 'cover' })
 
     const session = await getDodo().checkoutSessions.create({
       product_cart: [{ product_id: productId, quantity: 1 }],

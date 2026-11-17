@@ -18,7 +18,7 @@ const paymentKey = (paymentId: string) => `sponsors:payment:${paymentId}`
 // Checkout sessions live 24h; leave room for slow payment methods and webhook retries.
 const PENDING_TTL_SECONDS = 60 * 60 * 24 * 7
 
-type PendingSponsor = Pick<Sponsor, 'name' | 'url' | 'logo' | 'tagline'>
+type PendingSponsor = Pick<Sponsor, 'name' | 'url' | 'logo' | 'logoFit' | 'tagline'>
 
 function parse<T>(value: unknown): T | null {
   if (value == null) return null
@@ -55,6 +55,7 @@ export async function promoteSponsor(
     id: slotId,
     name: pending.name,
     logo: pending.logo,
+    logoFit: pending.logoFit,
     url: pending.url,
     tagline: pending.tagline,
     amountUsd: payment.amountUsd,

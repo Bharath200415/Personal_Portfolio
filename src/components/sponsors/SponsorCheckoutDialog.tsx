@@ -5,8 +5,14 @@ import { createPortal } from 'react-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { ArrowRight, Loader2, Lock, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { resolveLogo, SPONSOR_NAME_MAX, SPONSOR_TAGLINE_MAX, validateSubmission } from '@/lib/sponsor-validation'
-import type { SponsorSubmission } from '@/types/sponsor'
+import {
+  normalizeUrl,
+  resolveLogo,
+  SPONSOR_NAME_MAX,
+  SPONSOR_TAGLINE_MAX,
+  validateSubmission,
+} from '@/lib/sponsor-validation'
+import type { LogoFit, SponsorSubmission } from '@/types/sponsor'
 import { SponsorLogo } from './SponsorTile'
 import { tileFrame } from './tile-styles'
 
@@ -19,6 +25,13 @@ interface SponsorCheckoutDialogProps {
 type FieldErrors = Partial<Record<keyof SponsorSubmission, string>>
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const
+
+type SiteLogoState =
+  | { status: 'idle' | 'loading' | 'none' | 'error' }
+  | { status: 'found'; logo: string; fit: LogoFit }
+
+const linkButton =
+  'shrink-0 font-medium text-neutral-700 underline decoration-neutral-300 underline-offset-2 transition-colors hover:text-neutral-950 hover:decoration-neutral-500 dark:text-neutral-300 dark:decoration-neutral-600 dark:hover:text-white'
 
 export default function SponsorCheckoutDialog({ open, onClose, priceUsd }: SponsorCheckoutDialogProps) {
   const [mounted, setMounted] = useState(false)
@@ -38,12 +51,91 @@ function DialogBody({ onClose, priceUsd }: Omit<SponsorCheckoutDialogProps, 'ope
   const panelRef = useRef<HTMLDivElement>(null)
   const nameRef = useRef<HTMLInputElement>(null)
 
-  const [values, setValues] = useState<SponsorSubmission>({ name: '', logo: '', tagline: '', url: '' })
+  const [values, setValues] = useState({ name: '', url: '', tagline: '', logo: '' })
   const [errors, setErrors] = useState<FieldErrors>({})
   const [formError, setFormError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
+  const [site, setSite] = useState<SiteLogoState>({ status: 'idle' })
+  const [customLogoOpen, setCustomLogoOpen] = useState(false)
+  const customLogoRef = useRef<HTMLInputElement>(null)
 
-  const previewLogo = resolveLogo(values.logo) ?? ''
+  // Look up the logo for whatever link they've typed, after they pause.
+  // "none" means the site has no usable logo; "error" means we couldn't ask (server/network),
+  // which gets one silent retry and then a Try again button instead of a misleading "not found".
+  const normalizedUrl = normalizeUrl(values.url)
+  const [lookupAttempt, setLookupAttempt] = useState(0)
+  useEffect(() => {
+    if (!normalizedUrl) {
+      setSite({ status: 'idle' })
+      return
+    }
+    const controller = new AbortController()
+    const lookup = async () => {
+      const res = await fetch(`/api/sponsors/logo?url=${encodeURIComponent(normalizedUrl)}`, {
+        signal: controller.signal,
+      })
+      if (!res.ok) throw new Error(`Logo lookup failed: ${res.status}`)
+      return (await res.json()) as { logo: string | null; fit?: LogoFit }
+    }
+    const timer = setTimeout(async () => {
+      setSite({ status: 'loading' })
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const data = await lookup()
+          setSite(data.logo ? { status: 'found', logo: data.logo, fit: data.fit ?? 'cover' } : { status: 'none' })
+          return
+        } catch {
+          if (controller.signal.aborted) return
+          if (attempt === 0) await new Promise((r) => setTimeout(r, 1000))
+        }
+      }
+      if (!controller.signal.aborted) setSite({ status: 'error' })
+    }, 450)
+    return () => {
+      clearTimeout(timer)
+      controller.abort()
+    }
+  }, [normalizedUrl, lookupAttempt])
+
+  const customLogo = customLogoOpen ? resolveLogo(values.logo) : null
+
+  // Ask the server how a custom logo should sit in the tile, so the preview matches the result.
+  const [customFit, setCustomFit] = useState<{ logo: string; fit: LogoFit } | null>(null)
+  useEffect(() => {
+    if (!customLogo) return
+    const controller = new AbortController()
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/sponsors/logo?image=${encodeURIComponent(customLogo)}`, {
+          signal: controller.signal,
+        })
+        const data = (await res.json()) as { logo: string | null; fit?: LogoFit }
+        if (data.logo && data.fit) setCustomFit({ logo: customLogo, fit: data.fit })
+      } catch {}
+    }, 450)
+    return () => {
+      clearTimeout(timer)
+      controller.abort()
+    }
+  }, [customLogo])
+
+  const activeLogo: { logo: string; fit: LogoFit } | null = customLogo
+    ? { logo: customLogo, fit: customFit?.logo === customLogo ? customFit.fit : 'cover' }
+    : site.status === 'found'
+      ? { logo: site.logo, fit: site.fit }
+      : null
+  const previewLogo = activeLogo?.logo ?? ''
+  const siteHost = normalizedUrl ? new URL(normalizedUrl).hostname.replace(/^www\./, '') : ''
+
+  const openCustomLogo = () => {
+    setCustomLogoOpen(true)
+    requestAnimationFrame(() => customLogoRef.current?.focus())
+  }
+  const closeCustomLogo = () => {
+    setCustomLogoOpen(false)
+    setValues((v) => ({ ...v, logo: '' }))
+    setErrors((e) => ({ ...e, logo: undefined }))
+  }
 
   // Focus the first field, lock page scroll, close on Escape, keep Tab inside the panel.
   useEffect(() => {
@@ -82,7 +174,15 @@ function DialogBody({ onClose, priceUsd }: Omit<SponsorCheckoutDialogProps, 'ope
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    const result = validateSubmission(values)
+    // Send the custom logo if they typed one, otherwise the one we found. If the lookup
+    // hasn't finished, send none and the server looks it up from the link.
+    const payload: SponsorSubmission = {
+      name: values.name,
+      url: values.url,
+      tagline: values.tagline,
+      logo: customLogoOpen && values.logo.trim() ? values.logo : site.status === 'found' ? site.logo : undefined,
+    }
+    const result = validateSubmission(payload)
     if (!result.ok) {
       setErrors({ [result.field]: result.error })
       panelRef.current?.querySelector<HTMLInputElement>(`[name="${result.field}"]`)?.focus()
@@ -95,7 +195,7 @@ function DialogBody({ onClose, priceUsd }: Omit<SponsorCheckoutDialogProps, 'ope
       const res = await fetch('/api/sponsors/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify(payload),
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok || !data.checkoutUrl) {
@@ -130,7 +230,7 @@ function DialogBody({ onClose, priceUsd }: Omit<SponsorCheckoutDialogProps, 'ope
         aria-describedby={descId}
         className={cn(
           'relative w-full max-w-[400px] overflow-hidden border bg-background p-5 sm:p-6',
-          'rounded-t-[28px] border-black/[0.08] sm:rounded-[28px] dark:border-white/[0.08]',
+          'rounded-t-[20px] border-black/[0.08] sm:rounded-[20px] dark:border-white/[0.08]',
           'shadow-[0_24px_60px_-20px_rgba(15,23,42,0.35)]',
         )}
         style={{ fontFamily: 'var(--font-hk-grotesk)' }}
@@ -159,7 +259,13 @@ function DialogBody({ onClose, priceUsd }: Omit<SponsorCheckoutDialogProps, 'ope
           >
             <span className="block size-full overflow-hidden rounded-[inherit]">
               {previewLogo || values.name ? (
-                <SponsorLogo key={previewLogo} src={previewLogo} name={values.name || '?'} className="text-2xl sm:text-2xl" />
+                <SponsorLogo
+                  key={previewLogo}
+                  src={previewLogo}
+                  name={values.name || '?'}
+                  fit={activeLogo?.fit}
+                  className="text-2xl sm:text-2xl"
+                />
               ) : (
                 <span className="flex size-full items-center justify-center border border-dashed border-black/10 rounded-[inherit] dark:border-white/10" />
               )}
@@ -190,17 +296,82 @@ function DialogBody({ onClose, priceUsd }: Omit<SponsorCheckoutDialogProps, 'ope
             maxLength={SPONSOR_NAME_MAX}
             autoComplete="organization"
           />
-          <Field
-            label="Logo"
-            name="logo"
-            value={values.logo}
-            onChange={update('logo')}
-            error={errors.logo}
-            placeholder="octocat or https://…/logo.png"
-            hint="A GitHub username, or a link to a square image."
-            autoCapitalize="none"
-            spellCheck={false}
-          />
+          <div>
+            <Field
+              label="Link"
+              name="url"
+              type="url"
+              value={values.url}
+              onChange={update('url')}
+              error={errors.url}
+              placeholder="yoursite.com or github.com/you"
+              autoCapitalize="none"
+              spellCheck={false}
+            />
+            {!customLogoOpen && site.status !== 'idle' && (
+              <div className="mt-2 flex min-h-6 items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400" aria-live="polite">
+                {site.status === 'loading' && (
+                  <>
+                    <Loader2 className="size-3.5 animate-spin" aria-hidden />
+                    Finding your logo…
+                  </>
+                )}
+                {site.status === 'found' && (
+                  <>
+                    <span className="block size-5 shrink-0 overflow-hidden rounded-md border border-black/10 dark:border-white/10">
+                      <SponsorLogo key={site.logo} src={site.logo} name={values.name || siteHost} fit={site.fit} className="p-[12%] text-[10px] sm:text-[10px]" />
+                    </span>
+                    <span className="min-w-0 truncate">Logo from {siteHost}</span>
+                    <span aria-hidden>·</span>
+                    <button type="button" onClick={openCustomLogo} className={linkButton}>
+                      Not this logo?
+                    </button>
+                  </>
+                )}
+                {site.status === 'none' && (
+                  <>
+                    <span className="min-w-0 truncate">Couldn’t find a logo on {siteHost}.</span>
+                    <button type="button" onClick={openCustomLogo} className={linkButton}>
+                      Add one
+                    </button>
+                  </>
+                )}
+                {site.status === 'error' && (
+                  <>
+                    <span className="min-w-0 truncate">Couldn’t check {siteHost} right now.</span>
+                    <button type="button" onClick={() => setLookupAttempt((n) => n + 1)} className={linkButton}>
+                      Try again
+                    </button>
+                    <span aria-hidden>·</span>
+                    <button type="button" onClick={openCustomLogo} className={linkButton}>
+                      Add one
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+
+          {customLogoOpen && (
+            <div>
+              <Field
+                label="Logo"
+                name="logo"
+                inputRef={customLogoRef}
+                value={values.logo}
+                onChange={update('logo')}
+                error={errors.logo}
+                placeholder="octocat or https://…/logo.png"
+                hint="A GitHub username, or a link to a square image."
+                autoCapitalize="none"
+                spellCheck={false}
+              />
+              <button type="button" onClick={closeCustomLogo} className={cn(linkButton, 'mt-1.5 text-xs')}>
+                {site.status === 'found' ? `Use the logo from ${siteHost} instead` : 'Cancel'}
+              </button>
+            </div>
+          )}
+
           <Field
             label="Tagline"
             optional
@@ -211,18 +382,6 @@ function DialogBody({ onClose, priceUsd }: Omit<SponsorCheckoutDialogProps, 'ope
             placeholder="What you do, in a few words"
             hint="Shows under your name when someone hovers your tile."
             maxLength={SPONSOR_TAGLINE_MAX}
-          />
-          <Field
-            label="Link"
-            optional
-            name="url"
-            type="url"
-            value={values.url ?? ''}
-            onChange={update('url')}
-            error={errors.url}
-            placeholder="yoursite.com"
-            autoCapitalize="none"
-            spellCheck={false}
           />
 
           {formError && (
@@ -235,10 +394,17 @@ function DialogBody({ onClose, priceUsd }: Omit<SponsorCheckoutDialogProps, 'ope
             type="submit"
             disabled={submitting}
             className={cn(
-              'group relative flex h-11 w-full items-center justify-center gap-2 rounded-2xl text-sm font-medium',
-              'bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900',
-              'shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_10px_-4px_rgba(15,23,42,0.4)] dark:shadow-[inset_0_-1px_0_rgba(0,0,0,0.15)]',
-              'transition-[transform,opacity] duration-150 ease-out motion-safe:active:scale-[0.98] disabled:opacity-70',
+              'group relative flex h-12 w-full items-center justify-center gap-2 rounded-[14px] text-[15px] font-medium',
+              // Glossy dark pill: soft top-lit gradient, crisp border, inner top highlight, short drop shadow.
+              'border border-black/90 text-white',
+              'bg-[linear-gradient(180deg,#3a3a3c_0%,#1f1f21_48%,#141415_100%)]',
+              'shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_-1px_0_rgba(0,0,0,0.5),0_1px_2px_rgba(0,0,0,0.18),0_8px_16px_-8px_rgba(0,0,0,0.5)]',
+              // Dark mode: same treatment inverted so it still pops off the dark panel.
+              'dark:border-white/70 dark:text-neutral-900',
+              'dark:bg-[linear-gradient(180deg,#ffffff_0%,#f1f1f2_55%,#e4e4e7_100%)]',
+              'dark:shadow-[inset_0_1px_0_rgba(255,255,255,1),inset_0_-1px_0_rgba(0,0,0,0.08),0_8px_16px_-8px_rgba(0,0,0,0.7)]',
+              'transition-[transform,filter,opacity] duration-150 ease-out hover:brightness-[1.12] dark:hover:brightness-[0.97]',
+              'motion-safe:active:scale-[0.985] disabled:opacity-70 disabled:hover:brightness-100',
             )}
           >
             {submitting ? (

@@ -2,15 +2,17 @@
 
 import { useState, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
+import type { LogoFit } from '@/types/sponsor'
 
 interface LogoProps {
   src: string
   name: string
+  fit?: LogoFit
   className?: string
 }
 
 /** Logo image with a monogram fallback when the image is missing or broken. */
-export function SponsorLogo({ src, name, className }: LogoProps) {
+export function SponsorLogo({ src, name, fit = 'cover', className }: LogoProps) {
   const [failed, setFailed] = useState(false)
 
   if (failed || !src) {
@@ -27,7 +29,7 @@ export function SponsorLogo({ src, name, className }: LogoProps) {
     )
   }
 
-  return (
+  const img = (
     // eslint-disable-next-line @next/next/no-img-element -- sponsor logos come from arbitrary hosts
     <img
       src={src}
@@ -37,9 +39,25 @@ export function SponsorLogo({ src, name, className }: LogoProps) {
       draggable={false}
       referrerPolicy="no-referrer"
       onError={() => setFailed(true)}
-      className={cn('size-full object-cover select-none', className)}
+      className={cn('size-full select-none', fit === 'cover' ? 'object-cover' : 'object-contain', fit === 'cover' && className)}
     />
   )
+
+  // Transparent marks get room on a plate that contrasts with them, like an app icon.
+  if (fit !== 'cover') {
+    return (
+      <span
+        className={cn(
+          'flex size-full items-center justify-center p-[20%]',
+          fit === 'contain-dark' ? 'bg-[#0a0a0a]' : 'bg-white',
+          className,
+        )}
+      >
+        {img}
+      </span>
+    )
+  }
+  return img
 }
 
 /** Small circular badge pinned to a tile's top-right corner. */
