@@ -53,7 +53,7 @@ export default function NewHeroSection() {
                 twitter: "https://x.com/bharathships",
                 github: "https://github.com/bharath200415",
                 linkedin: "https://www.linkedin.com/in/bharathcodes/",
-                resume: "https://drive.google.com/file/d/1MyDKUmPGJ08TAcYjyr3n1iDZ_c0uyu6R/view?usp=sharing",
+                resume: "https://drive.google.com/file/d/1F4nCajBi-w_-RBarxQ_BdG01SsgH7abn/view?usp=sharing",
               }}
             />
           </Reveal>
